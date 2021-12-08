@@ -23,14 +23,14 @@ std::size_t decode(std::string (&a)[10], std::string (&nums)[4]) {
     });
     
     for (std::string &s : a) {
-        std::sort(s.begin(), s.end());
+        std::ranges::sort(s);
     }
     
     std::size_t val = 0;
     for (std::string &n : nums) {
-        std::sort(n.begin(), n.end());
+        std::ranges::sort(n);
         val *= 10;
-        val += desired_order[std::find(a, std::end(a), n) - a];
+        val += desired_order[std::ranges::find(a, n) - a];
     }
     return val;
 }
