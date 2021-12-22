@@ -88,9 +88,9 @@ public:
     void subtract(cuboid other, std::vector<cuboid> &res) const {
         auto before = ptrdiff_t(res.size());
         if (subdivide_around(other, res)) {
-            res.erase(remove_if(res.begin() + before, res.end(), [other](cuboid c) {
+            res.erase(find_if(res.begin() + before, res.end(), [other](cuboid c) {
                 return other.contains(c);
-            }), res.end());
+            }));
         }
     }
 };
