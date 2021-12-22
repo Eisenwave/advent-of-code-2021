@@ -55,6 +55,10 @@ public:
 
     template <int D>
     void split_at_cuboid_bounds(cuboid other, std::vector<cuboid> &out) const {
+        if (not intersects(other)) {
+            out.push_back(*this);
+            return;
+        }
         cuboid lo, hi;
         if (split<D>(other.d1[D] + 1, lo, hi)) {
             out.push_back(hi);
